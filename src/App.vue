@@ -2,14 +2,13 @@
 	<div id="app">
 		<main>
 			<div class="search-box">
-				<input type="text" name="input_city" class="search-bar" placeholder="Please enter the city name" v-model="query" @keypress="fetchWeather"/>
+				<input type="text" name="input_city" class="search-bar" placeholder="都市名を入力してください" v-model="query" @keypress="fetchWeather"/>
 			</div>
 
 			<div class="weather-wrap" v-if="typeof  weather.main != 'undefined'">
 				<div class="location-box">
 					<div class="info">都市名 {{weather.name}}</div>
-					<div class="info">最高気温 {{Math.round(weather.main.temp_max)}}℃</div>
-					<div class="info">最低気温 {{Math.round(weather.main.temp_min)}}℃</div>
+					<div class="info">気温 {{Math.round(weather.main.temp)}}℃</div>
 					<div class="info">湿度 {{weather.main.humidity}}%</div>
 					<div class="info">天候 {{weather.weather[0].main}}</div>
 				</div>

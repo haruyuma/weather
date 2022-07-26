@@ -10,7 +10,7 @@
 					<div class="info">都市名 {{weather.name}}</div>
 					<div class="info">気温 {{Math.round(weather.main.temp)}}℃</div>
 					<div class="info">湿度 {{weather.main.humidity}}%</div>
-					<div class="info">天候 {{weather.weather[0].main}}</div>
+					<div class="info">天候 <span style="position: relative; top:15px;"><img :src="getweatherIcon"></span></div>
 				</div>
 			</div>
 			<div class="weather-wrap" v-if="typeof  weather.main == 'undefined' && flg == false">
@@ -33,6 +33,7 @@ export default{
 			query: '',
 			weather: {},
 			flg: true,
+			image:'',
 		}
 	},
 	methods: {
@@ -43,6 +44,7 @@ export default{
 					.then(res => {
 						this.flg = true;
 						this.weather = res.data;
+						this.image = "http://openweathermap.org/img/w/" + this.weather.weather[0].icon + ".png";
 					})
 					.catch(error => {
 						this.flg = false;
@@ -53,7 +55,12 @@ export default{
 		reset(){
 			this.weather = 0;
 		},
-	}
+	},
+	computed:{
+		getweatherIcon(){
+			return this.image;
+		},
+	},
 }
 </script>
 
@@ -66,47 +73,46 @@ export default{
 	}
 
 	#app{
-/*		background-image: url('./assets/S__5627907.jpg');*/
+		background-image: url('./assets/valentin-muller-bWtd1ZyEy6w-unsplash.jpg');
 		background-size:cover;
 		background-position:bottom;
-		
+		min-height: 100vh;
 	}
 
 	main{
-		min-height: 100vh;
 		padding:25px;
 		background-image: liner-gradient(to bottom, rgba(0, 0, 0, 25), rgba(0, 0, 0, 0.75));
 	}
 
-	.search-box .search-bar{
-		width: 100%;
+	.search-box {
 		margin-right: auto;
 		margin-left: auto;
-		margin-bottom: 30px;
-		margin-top: 30px;
 		text-align: center;
-		display: block;
-		width: 60%;
-		padding: 10px;
-
-		color: #313131;
-		font-family: "游明朝", YuMincho, "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
-		font-size: 25px;
-		border: 1px solid;
-		outline: none;
-		background-color: rgba(255, 255, 255, 0.8);
-		border-radius: 15px 15px 15px 15px;
-		
+		width: 45%;
 	}
 
-	.info{
-		color:#000000;
+	.search-bar {
+		margin-bottom: 5%;
+		margin-top: 5%;
+		text-align: center;
+		width: 100%;
+		padding: 10px;
+		color: #313131;
 		font-family: "游明朝", YuMincho, "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
-		font-size:35px;
+		font-size: 12px;
+		border: none;
+		outline: none;
+		border-radius: 15px 15px 15px 15px;
+	}
+
+
+	.info{
+		color:#FFFFFF;
+		font-family: "游明朝", YuMincho, "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+		font-size:30px;
 		font-weight:500;
 		text-align:center;
 		line-height:2.5;
-/*		text-shadow:1px 3px rgba(0, 0, 0, 1.5);*/
 	}
 
 </style>

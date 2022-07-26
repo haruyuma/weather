@@ -88,7 +88,7 @@ export default{
 		margin-right: auto;
 		margin-left: auto;
 		text-align: center;
-		width: 45%;
+		width: 60%;
 	}
 
 	.search-bar {
